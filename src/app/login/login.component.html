@@ -1,0 +1,37 @@
+<div class="flex justify-center gap-x-72">
+  <div class="flex flex-col gap-y-4">
+    <p class="text-2xl font-bold text-sky-400 italic">Diabetes Logging</p>
+    <p class="text-4xl font-semibold">Recent Logins</p>
+    <p>Click on your profile or add an account.</p>
+
+    <div class="flex gap-x-4">
+      <div class="avatar">
+        <div class="rounded-full w-20 h-20 bg-base-300"></div>
+      </div>
+      <div class="avatar">
+        <div class="rounded-full w-20 h-20 bg-base-300"></div>
+      </div>
+      <div class="avatar">
+        <div class="rounded-full w-20 h-20 bg-base-300"></div>
+      </div>
+      <div class="avatar">
+        <div class="rounded-full w-20 h-20 bg-base-300"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 w-96">
+    <div class="card-body">
+      <input placeholder="Email" class="input input-bordered" />
+      <input placeholder="Password" class="input input-bordered" />
+
+      <button class="btn btn-info my-2" (click)="login()">Log In</button>
+      <a class="flex justify-center link">Forgot password?</a>
+
+      <div class="divider"></div>
+      <button class="btn btn-success" (click)="signup()">
+        Create new account
+      </button>
+    </div>
+  </div>
+</div>
