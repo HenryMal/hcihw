@@ -1,0 +1,22 @@
+[
+  {
+    "firstName": "Sara",
+    "lastName": "Norman",
+    "id": "5344-9709",
+    "doctorName": "Dr. Jason Rosenberg",
+    "doctorPhoneNumber": "579-0432",
+    "glucoseLevels": 0,
+    "minGlucoseLevel": 80,
+    "maxGlucoseLevel": 140
+  },
+  {
+    "firstName": "Gregg",
+    "lastName": "Norman",
+    "id": "1275-4307",
+    "doctorName": "Dr. Nikhil Singh",
+    "doctorPhoneNumber": "334-2309",
+    "glucoseLevels": 0,
+    "minGlucoseLevel": 70,
+    "maxGlucoseLevel": 120
+  }
+]

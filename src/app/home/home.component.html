@@ -1,1 +1,119 @@
-<p>home works!</p>
+<div class="flex items-center justify-between bg-base-200 py-2.5 px-5">
+  <p class="text-2xl font-bold text-sky-400 italic">Diabetes Logging</p>
+
+  <div class="btn btn-error" (click)="logout()">Log Out</div>
+</div>
+
+<div *ngIf="user">
+  <div class="flex items-center justify-center gap-x-48 mt-16">
+    <div class="flex items-center justify-center flex-col gap-y-8">
+      <div class="card bg-base-200 w-96">
+        <div class="card-body flex justify-center items-center">
+          <p class="text-2xl text-semibold text-white">
+            Welcome, {{ user.firstName }} {{ user.lastName }}!
+          </p>
+          <p class>Patient ID: {{ user.id }}</p>
+
+          <div class="divider"></div>
+
+          <fa-icon
+            [icon]="faInfoCircle"
+            class="tooltip tooltip-bottom"
+            data-tip="Shows patient's information."
+          ></fa-icon>
+        </div>
+      </div>
+
+      <div class="card bg-base-200 w-96">
+        <div class="card-body flex justify-center items-center">
+          <p class="text-2xl text-semibold text-white">Doctor's Information</p>
+          <p class>Doctor's Name: {{ user.doctorName }}</p>
+          <p class>Doctor's Number: {{ user.doctorPhoneNumber }}</p>
+
+          <div class="divider"></div>
+
+          <fa-icon
+            [icon]="faInfoCircle"
+            class="tooltip tooltip-bottom"
+            data-tip="Shows doctor's name and contact information."
+          ></fa-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-center">
+      <div class="card bg-base-300 w-96 h-32 truncate">
+        <div class="card-body p-4">
+          <p class="text-xl font-medium mb-2">Reason for Abnormal Reading:</p>
+          <p
+            class="{{ reasonForAbnormalReading ? '' : 'text-gray-500 italic' }}"
+          >
+            {{ reasonForAbnormalReading || "No abnormalities" }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card bg-base-200 w-96">
+        <div class="card-body flex justify-center items-center">
+          <p class="text-2xl text-semibold text-white">
+            Your Blood Sugar Reading:
+          </p>
+          <p class="text-8xl text-bold">{{ user.glucoseLevels }}</p>
+          <p *ngIf="ketonesPresent !== undefined">
+            {{
+              ketonesPresent
+                ? "Ketones present in urine."
+                : "No ketones in urine."
+            }}
+          </p>
+          <div
+            class="btn btn-primary"
+            (click)="toggleReadingInput(); toggleModal()"
+          >
+            Need to re-enter reading?
+          </div>
+          <div class="divider"></div>
+          <fa-icon
+            [icon]="faInfoCircle"
+            class="tooltip tooltip-bottom"
+            data-tip="Shows patient's blood sugar and ketones presence."
+          ></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 z-40"
+    *ngIf="showModal"
+    (click)="onOverlayClick($event)"
+  >
+    <div class="modal-box" (click)="onModalClick($event)">
+      <div *ngIf="!askForReading">
+        <p class="font-bold text-lg">
+          Have you taken your blood sugar reading today?
+        </p>
+        <div class="modal-action">
+          <button class="btn btn-primary" (click)="hideModal()">Yes</button>
+          <button class="btn btn-secondary" (click)="toggleReadingInput()">
+            No
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="flex items-center justify-center flex-col gap-y-4"
+        *ngIf="askForReading"
+      >
+        <p>Enter a value between 0-999</p>
+        <input
+          [(ngModel)]="bloodSugarReading"
+          class="input input-bordered width-60"
+        />
+        <div class="btn btn-success" (click)="submitReading()">
+          Submit reading
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
