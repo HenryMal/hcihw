@@ -25,7 +25,7 @@ export class LoginComponent {
     this.http.get<any[]>('assets/users.json').subscribe((data) => {
       this.users = data.map((user) => ({
         ...user,
-        initials: `${user.firstName}. ${user.lastName[0]}`,
+        initials: `${user.firstName} ${user.lastName[0]}.`,
       }));
     });
   }
